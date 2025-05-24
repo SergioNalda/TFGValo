@@ -1,0 +1,29 @@
+<nav class="navbar">
+  <div class="navbar-links">
+    <a routerLink="/estrategias" routerLinkActive="active" class="nav-link">Estrategias</a>
+    <a routerLink="/miras" routerLinkActive="active" class="nav-link">Miras</a>
+    <a routerLink="/ranking" routerLinkActive="active" class="nav-link">Ranking</a>
+  </div>
+
+ <ng-container *ngIf="!name; else loggedIn">
+  <div class="login-button">
+    <a routerLink="/login" class="nav-link login-link">Iniciar Sesión</a>
+  </div>
+</ng-container>
+
+<ng-template #loggedIn>
+  <div class="login-button">
+    <div class="user-menu" (click)="toggleDropdown()" [class.open]="dropdownOpen" style="display: flex; align-items: center; cursor: pointer;">
+  <img *ngIf="profilePhoto" [src]="profilePhoto" alt="Foto de perfil" class="profile-avatar" />
+  <span class="user-name" style="margin-left: 8px;">{{ name }}</span>
+  <div class="dropdown" *ngIf="dropdownOpen">
+    <a class="dropdown-item" routerLink="/favoritos" (click)="dropdownOpen = false">Favoritos</a>
+    <a class="dropdown-item" routerLink="/editar-perfil" (click)="editProfile()">Editar perfil</a>
+    <a class="dropdown-item" (click)="logout()">Cerrar sesión</a>
+  </div>
+</div>
+
+  </div>
+</ng-template>
+
+

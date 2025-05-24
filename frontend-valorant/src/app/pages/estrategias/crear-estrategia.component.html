@@ -1,0 +1,65 @@
+<div class="form-container">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="crear-estrategia-form">
+  <h2>Crear Estrategia</h2>
+
+  <!-- Título -->
+  <input formControlName="titulo" placeholder="Título" />
+
+  <div class="section-divider"></div>
+
+  <!-- Descripción -->
+  <textarea formControlName="descripcion" placeholder="Descripción"></textarea>
+
+  <div class="section-divider"></div>
+
+  <!-- Tipo -->
+  <select formControlName="tipo">
+    <option value="Micros">Micros</option>  
+    <option value="Guías">Guías</option>
+    <option value="Lineup">Lineup</option>
+  </select>
+
+  <div class="section-divider"></div>
+
+  <!-- Selección de Agentes -->
+  <div class="agentes-selection">
+    <div
+  *ngFor="let agente of agentes"
+  class="agente"
+  [class.selected]="form.get('agentes')?.value.includes(agente.nombre)"
+  (click)="toggleAgente(agente.nombre)">
+  <img [src]="agente.imagen" [alt]="agente.nombre" />
+  <span>{{ agente.nombre }}</span>
+</div>
+</div>
+
+<div class="section-divider"></div>
+
+  <!-- Selección de Mapa -->
+  <div class="mapa-selection">
+    <label>Selecciona un mapa:</label>
+    <select formControlName="mapa">
+      <option *ngFor="let mapa of mapas" [value]="mapa.nombre">
+        {{ mapa.nombre }}
+      </option>
+    </select>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- Subir Video -->
+  <div class="file-upload">
+    <label for="videoFile">Subir Video:</label>
+    <input type="file" id="videoFile" (change)="onFileSelected($event)" />
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- Mostrar errores -->
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+
+  <!-- Botón de Enviar -->
+  <button type="submit" [disabled]="form.invalid || !selectedFile">Crear Estrategia</button>
+</form>
+</div>

@@ -1,0 +1,81 @@
+<app-header></app-header>
+
+<div class="main-container">
+  <div class="section-header">
+    <h1>Miras Personalizadas</h1>
+    <h3>Explora, busca y encuentra la mejor mira para ti</h3>
+    <button routerLink="/crear-mira" class="btn btn-primary">
+      <i class="fas fa-plus"></i> Crear Nueva Mira
+    </button>
+  </div>
+
+  <!-- Filtros -->
+  <div class="miras-grid-container">
+    <div class="filtros-container">
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Buscar miras..."
+        [(ngModel)]="searchText"
+      />
+
+      <div class="filter-buttons">
+        <button
+          class="filter-button"
+          [class.active]="tipoSeleccionado === 'all'"
+          (click)="tipoSeleccionado = 'all'">
+          <i class="fas fa-th"></i> ALL
+        </button>
+        <button
+          class="filter-button"
+          [class.active]="tipoSeleccionado === 'pros'"
+          (click)="tipoSeleccionado = 'pros'">
+          <i class="fas fa-star"></i> PROS
+        </button>
+      </div>
+    </div>
+
+    <!-- Lista de miras filtradas -->
+    <div class="miras-grid">
+      <div
+        class="mira-card"
+        *ngFor="let mira of mirasFiltradas"
+        (click)="abrirModal(mira)">
+        <img
+          *ngIf="mira.imagen"
+          [src]="'http://127.0.0.1:8000/storage/' + mira.imagen"
+          [alt]="mira.nombre"
+        />
+        <p class="mira-titulo">{{ mira.nombre }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" [class.show]="modalAbierto">
+    <div class="modal-content">
+      <span class="close" (click)="cerrarModal()">&times;</span>
+      <img
+        *ngIf="miraSeleccionada?.imagen"
+        [src]="'http://127.0.0.1:8000/storage/' + miraSeleccionada?.imagen"
+        [alt]="miraSeleccionada?.nombre"
+      />
+      <h2>{{ miraSeleccionada?.nombre }}</h2>
+      <button (click)="copiarCodigo()">
+        <i class="fas fa-copy"></i> Copiar Código
+      </button>
+      <span *ngIf="codigoCopiado" class="copiado-msg">¡Copiado!</span>
+    </div>
+  </div>
+</div>
+
+<footer class="main-footer">
+  <div class="footer-content">
+    <p>&copy; 2025 SergioNalda - Todos los derechos reservados</p>
+    <div class="footer-links">
+      <a routerLink="/about">Acerca de</a>
+      <a routerLink="/terms">Términos</a>
+      <a routerLink="/contact">Contacto</a>
+    </div>
+  </div>
+</footer>

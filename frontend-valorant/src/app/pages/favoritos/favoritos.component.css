@@ -1,0 +1,240 @@
+/* Fondo base y fuente */
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #0a0a0a;
+  font-family: 'Orbitron', sans-serif;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+}
+
+/* Título principal */
+h2 {
+  font-size: 2rem;
+  color: #ffffff;
+  text-align: center;
+  margin-top: 2rem;
+  text-shadow: 0 0 12px #FFD700;
+}
+
+/* Contenedor de favoritos */
+.favoritos-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Card estilo estrategias */
+.card {
+  background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
+  border: 2px solid #FFD700;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.7);
+}
+
+/* Imagen del video */
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+}
+
+.video-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.8) contrast(1.1);
+  transition: filter 0.3s ease;
+}
+
+.card:hover .video-img {
+  filter: brightness(1);
+}
+
+/* Overlays */
+.titulo-overlay,
+.mapa-overlay {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.75);
+  color: #ffffff;
+  padding: 4px 8px;
+  font-size: 0.85rem;
+  text-shadow: 0 0 5px #FFD700;
+  border: 1px solid #FFD700;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.titulo-overlay {
+  top: 8px;
+  left: 8px;
+}
+
+.mapa-overlay {
+  bottom: 8px;
+  right: 8px;
+}
+
+/* Modal */
+.video-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000000e6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.video-modal-content {
+  background: #111;
+  border: 2px solid #FFD700;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 800px;
+  width: 90%;
+  box-shadow: 0 0 30px #FFD700;
+  position: relative;
+  animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tipo-modal {
+  font-size: 0.9rem;
+  color: #ff0000;
+  background: rgba(255, 46, 46, 0.15);
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+.cerrar-icon {
+  background: transparent;
+  border: none;
+  color: #FFD700;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.cerrar-icon:hover {
+  color: #ff0000;
+}
+
+.modal-title {
+  margin-top: 0.5rem;
+  color: #ffffff;
+  font-size: 1.5rem;
+  text-shadow: 0 0 10px #FFD700;
+}
+
+.modal-mapa-info {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.mapa-modal-img {
+  width: 120px;
+  height: auto;
+  margin-right: 1rem;
+  border-radius: 8px;
+  border: 1px solid #FFD700;
+}
+
+.nombre-mapa {
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.modal-video-wrapper iframe {
+  width: 100%;
+  height: 360px;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.descripcion-modal {
+  margin-top: 1.5rem;
+  color: #ccc;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Footer */
+.main-footer {
+  background: #0f0f0f;
+  color: #aaa;
+  padding: 2rem;
+  text-align: center;
+  border-top: 2px solid #FFD700;
+}
+
+.footer-content p {
+  margin: 0;
+  color: #ffffff;
+}
+
+.footer-links a {
+  margin: 0 1rem;
+  color: #ff0000;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.footer-links a:hover {
+  color: #ff0000;
+}
+
+/* Estilo del mensaje si no hay favoritos */
+.no-favoritos {
+  color: #ffffff;
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 3rem;
+  text-shadow: 0 0 8px #FFD700;
+  font-weight: bold;
+}

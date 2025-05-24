@@ -1,0 +1,174 @@
+/* Navbar */
+.navbar {
+  width: 100%;
+  background: #181616;
+  padding: 1.5rem 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+}
+
+
+.navbar-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.login-button {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.login-button .login-link {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+  background: #ff0015;
+  border-radius: 6px;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.login-button .login-link:hover {
+  background: #e60013;
+  transform: scale(1.05);
+}
+
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  position: relative;
+  transition: color 0.3s;
+  padding-bottom: 4px;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: #ff0015;
+  transition: width 0.3s;
+}
+
+.nav-link:hover {
+  color: #ff0015;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link.active {
+  color: #ff0015;
+  font-weight: bold;
+}
+
+.nav-link.active::after {
+  width: 100%;
+}
+
+/*User Menu */
+.user-menu {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.6rem 1rem;
+  background: linear-gradient(145deg, #1c1a1a, #2a2727);
+  border: 1px solid #3c3c3c;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 8px rgba(255, 0, 21, 0.25);
+}
+
+.user-menu:hover {
+  background: #2e2c2c;
+  box-shadow: 0 0 12px rgba(255, 0, 21, 0.4);
+}
+
+.user-name {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  position: relative;
+}
+
+.user-name::after {
+  content: '\25BC'; /* ▾ */
+  font-size: 0.7rem;
+  margin-left: 6px;
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.user-menu.open .user-name::after {
+  transform: rotate(180deg);
+}
+
+.dropdown {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background: #1e1d1d;
+  border: 1px solid #3a3a3a;
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.6);
+  z-index: 1000;
+  overflow: hidden;
+  min-width: 180px;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: all 0.25s ease-in-out;
+}
+
+.user-menu.open .dropdown {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  color: #e6e6e6;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.dropdown-item:hover {
+  background: rgba(255, 0, 21, 0.08);
+  color: #ff0015;
+}
+
+
+.login-button {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000; /* <-- Asegura que todo lo que esté dentro flote por encima */
+}
+
+.profile-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #ccc;
+}
+
+

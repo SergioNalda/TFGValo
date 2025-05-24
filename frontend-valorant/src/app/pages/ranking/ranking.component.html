@@ -1,0 +1,50 @@
+<div class="layout-wrapper">
+  <app-header></app-header>
+  <div class="ranking-container">
+    <h1 class="ranking-title">🏆 Ranking de Estrategias</h1>
+    <div class="ranking-table-wrapper">
+      <table class="ranking-table futuristic-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Jugador</th>
+            <th>Estrategias</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let user of ranking; index as i"
+            [ngClass]="{
+              'gold': i === 0,
+              'silver': i === 1,
+              'bronze': i === 2,
+              'top-row': i < 10
+            }"
+          >
+            <td>
+              <span class="ranking-medal" *ngIf="i === 0">🥇</span>
+              <span class="ranking-medal" *ngIf="i === 1">🥈</span>
+              <span class="ranking-medal" *ngIf="i === 2">🥉</span>
+              <span *ngIf="i > 2">{{ i + 1 }}</span>
+            </td>
+            <td class="username">
+            <a [routerLink]="['/public-profile', user.id]">{{ user.name }}</a>
+            </td>
+            <td>{{ user.estrategias_count }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer class="main-footer">
+    <div class="footer-content">
+      <p>&copy; 2025 SergioNalda - Todos los derechos reservados</p>
+      <div class="footer-links">
+        <a routerLink="/about">Acerca de</a>
+        <a routerLink="/terms">Términos</a>
+        <a routerLink="/contact">Contacto</a>
+      </div>
+    </div>
+  </footer>
+</div>

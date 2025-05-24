@@ -1,0 +1,36 @@
+<div class="crear-mira-container">
+  <h2>Crear Nueva Mira</h2>
+
+  <div *ngIf="alertaVisible" class="alerta-mira-enviada">
+  {{ mensajeAlerta }}
+</div>
+
+
+  <form [formGroup]="miraForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label>Nombre:</label>
+      <input formControlName="nombre" placeholder="Nombre de la mira" />
+    </div>
+
+    <div>
+      <label>Código:</label>
+      <input formControlName="codigo" placeholder="Código para copiar" />
+    </div>
+
+    <div>
+      <label>Tipo:</label>
+      <select formControlName="tipo">
+        <option value="" disabled>Selecciona un tipo</option>
+        <option value="all">All</option>
+        <option value="pros">Pros</option>  
+      </select>
+    </div>
+
+    <div>
+      <label>Imagen:</label>
+      <input type="file" (change)="onFileChange($event)" />
+    </div>
+
+    <button type="submit" [disabled]="miraForm.invalid">Crear Mira</button>
+  </form>
+</div>

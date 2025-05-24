@@ -1,0 +1,131 @@
+/* Contenedor formulario */
+.crear-mira-container {
+  max-width: 600px;
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, #0ff8, #00bcd4cc);
+  padding: 2rem 2.5rem;
+  border-radius: 20px;
+  box-shadow:
+    0 0 15px 3px #00fff0cc,
+    inset 0 0 20px 2px #00fff0cc;
+  color: #e0f7fa;
+  text-align: left;
+  backdrop-filter: blur(8px);
+  border: 1px solid #00ffffaa;
+  transition: transform 0.3s ease;
+}
+
+/* Título */
+.crear-mira-container h2 {
+  text-align: center;
+  font-size: 2.6rem;
+  margin-bottom: 2rem;
+  color: #ffffff;
+  text-shadow: 0 0 12px #00e0ffaa, 0 0 30px #00fff0ff;
+  letter-spacing: 1.5px;
+}
+
+/* Formulario */
+.crear-mira-container form div {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Labels */
+.crear-mira-container label {
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 0 6px #00c0ffcc;
+}
+
+/* Inputs y Select */
+.crear-mira-container input[type="text"],
+.crear-mira-container input[type="file"],
+.crear-mira-container select,
+.crear-mira-container input[formControlName] {
+  background-color: #001f24;
+  border: 2px solid #00d8ff;
+  border-radius: 10px;
+  padding: 0.6rem 1rem;
+  color: #ffffff;
+  font-size: 1.1rem;
+  box-shadow: 0 0 10px #00caff88;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Focus inputs/select */
+.crear-mira-container input[type="text"]:focus,
+.crear-mira-container input[type="file"]:focus,
+.crear-mira-container select:focus,
+.crear-mira-container input[formControlName]:focus {
+  outline: none;
+  border-color: #00ffff;
+  box-shadow: 0 0 20px #00ffffaa;
+}
+
+/* Botón */
+.crear-mira-container button[type="submit"] {
+  width: 100%;
+  background: linear-gradient(90deg, #00e0ff, #0099cc);
+  color: #000;
+  font-weight: 700;
+  font-size: 1.3rem;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  box-shadow: 0 0 15px #00ffff;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  user-select: none;
+}
+
+/* Botón deshabilitado */
+.crear-mira-container button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Hover botón */
+.crear-mira-container button[type="submit"]:hover:not([disabled]) {
+  background: linear-gradient(90deg, #00ffff, #006b88);
+  color: #000;
+  box-shadow: 0 0 35px #00ffffcc;
+  transform: scale(1.08);
+}
+
+.crear-mira-container:hover {
+  transform: translate(-50%, -50%) scale(1.05);
+  box-shadow:
+    0 0 30px 5px #00fff0ff,
+    inset 0 0 25px 3px #00fff0ff;
+}
+
+.alerta-mira-enviada {
+  background: linear-gradient(to right, gold);
+  color: #ffffff;
+  padding: 12px 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 600;
+  box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
+  animation: slideFade 0.4s ease-out;
+}
+
+@keyframes slideFade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

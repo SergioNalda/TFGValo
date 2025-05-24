@@ -1,0 +1,120 @@
+<h2>Panel Admin Estrategias</h2>
+<div *ngIf="mensajeExito" class="alert alert-exito">
+  {{ mensajeExito }}
+</div>
+<div *ngIf="mensajeError" class="alert alert-error">
+  {{ mensajeError }}
+</div>
+
+<div *ngIf="cargando">Cargando estrategias...</div>
+<div *ngIf="error">{{ error }}</div>
+
+<table *ngIf="!cargando && estrategias.length">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Título</th>
+      <th>Usuario</th>
+      <th>Tipo</th>
+      <th>Mapa</th>
+      <th>Agentes</th>
+      <th>Aprobada</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let est of estrategias">
+      <td>{{ est.id }}</td>
+      <td>{{ est.titulo }}</td>
+      <td>{{ est.user?.name || 'Sin usuario' }}</td>
+      <td>{{ est.tipo }}</td>
+      <td>{{ est.mapa }}</td>
+      <td>
+        <ul style="padding-left: 20px; margin: 0;">
+          <li *ngFor="let agente of (est.agentes || [])">{{ agente }}</li>
+        </ul>
+      </td>
+      <td>{{ est.is_approved ? 'Sí' : 'No' }}</td>
+      <td class="action-buttons">
+        <button *ngIf="!est.is_approved" (click)="aprobar(est.id)" [disabled]="est.is_approved">Aprobar</button>
+        <span *ngIf="est.is_approved" class="approved-button">Aprobada</span>
+        <button (click)="editar(est)">Editar</button>
+        <button class="btn-delete" (click)="confirmarEliminar(est.id)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Modal Confirmación Eliminar -->
+<div class="modal-eliminar" *ngIf="mostrarConfirmacionEliminar" (click)="cerrarConfirmacion()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <p>¿Seguro que quieres eliminar esta estrategia?</p>
+    <div class="botones-modal">
+      <button (click)="eliminar()" class="btn-confirmar">Sí, eliminar</button>
+      <button (click)="cerrarConfirmacion()" class="btn-cancelar">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="estrategiaEditando" class="form-edit-container">
+  <h3>Editar Estrategia ID: {{ estrategiaEditando.id }}</h3>
+  <form [formGroup]="estrategiaForm" (ngSubmit)="guardarCambios()">
+    <div>
+      <label>Título:</label>
+      <input formControlName="titulo" />
+    </div>
+    <div>
+      <label>Descripción:</label>
+      <textarea formControlName="descripcion"></textarea>
+    </div>
+    <div>
+      <label>Tipo:</label>
+      <input formControlName="tipo" />
+    </div>
+    <div>
+      <label>Mapa:</label>
+      <select formControlName="mapa">
+        <option *ngFor="let mapa of mapas" [value]="mapa.nombre">{{ mapa.nombre }}</option>
+      </select>
+    </div>
+
+    <div>
+      <label>Agentes:</label>
+      <div class="agentes-selection">
+        <div
+          *ngFor="let agente of agentes"
+          (click)="toggleAgente(agente.nombre)"
+          [ngClass]="{
+            'agente': true,
+            'agente-seleccionado': isAgenteSelected(agente.nombre)
+        }"
+        >
+          <img
+            *ngIf="agente.imagen"
+            [src]="agente.imagen"
+            alt="{{ agente.nombre }}"
+            width="48"
+            height="48"
+          />
+          <span>{{ agente.nombre }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="selectedFile">
+      <label>Vista previa del video seleccionado:</label>
+      <video [src]="videoPreviewUrl" controls width="320"></video>
+    </div>
+
+    <div *ngIf="!selectedFile && estrategiaForm.value.video">
+      <label>Vista previa del video actual:</label>
+      <video [src]="getVideoUrl(estrategiaForm.value.video)" controls width="320"></video>
+    </div>
+
+    <div>
+      <button type="submit" [disabled]="estrategiaForm.invalid">Guardar Cambios</button>
+      <button type="button" (click)="cancelarEdicion()">Cancelar</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,126 @@
+<h2 class="title">Gestión de Miras</h2>
+
+<!-- ALERTA -->
+<div
+  *ngIf="alertMessage"
+  class="alert"
+  [ngClass]="{'alert-success': alertType === 'success', 'alert-error': alertType === 'error'}"
+  role="alert"
+>
+  {{ alertMessage }}
+</div>
+
+<form [formGroup]="miraForm" (ngSubmit)="onSubmit()" class="mira-form" novalidate>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="nombre">Nombre <span class="required">*</span></label>
+      <input
+        id="nombre"
+        formControlName="nombre"
+        type="text"
+        placeholder="Nombre de la mira"
+        [class.invalid]="miraForm.get('nombre')?.invalid && (miraForm.get('nombre')?.touched || miraForm.get('nombre')?.dirty)"
+      />
+      <small class="error-message" *ngIf="miraForm.get('nombre')?.hasError('required') && (miraForm.get('nombre')?.touched || miraForm.get('nombre')?.dirty)">
+        El nombre es obligatorio.
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label for="codigo">Código <span class="required">*</span></label>
+      <input
+        id="codigo"
+        formControlName="codigo"
+        type="text"
+        placeholder="Código único"
+        [class.invalid]="miraForm.get('codigo')?.invalid && (miraForm.get('codigo')?.touched || miraForm.get('codigo')?.dirty)"
+      />
+      <small class="error-message" *ngIf="miraForm.get('codigo')?.hasError('required') && (miraForm.get('codigo')?.touched || miraForm.get('codigo')?.dirty)">
+        El código es obligatorio.
+      </small>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="tipo">Tipo <span class="required">*</span></label>
+      <select
+        id="tipo"
+        formControlName="tipo"
+        [class.invalid]="miraForm.get('tipo')?.invalid && (miraForm.get('tipo')?.touched || miraForm.get('tipo')?.dirty)"
+      >
+        <option value="" disabled>Selecciona un tipo</option>
+        <option value="all">All</option>
+        <option value="pros">Pros</option>
+      </select>
+      <small class="error-message" *ngIf="miraForm.get('tipo')?.hasError('required') && (miraForm.get('tipo')?.touched || miraForm.get('tipo')?.dirty)">
+        El tipo es obligatorio.
+      </small>
+    </div>
+
+    <div class="form-group file-group">
+      <label for="imagen">Imagen</label>
+      <input id="imagen" type="file" (change)="onFileChange($event)" accept="image/*" />
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="miraForm.invalid" class="btn btn-primary">
+    {{ editingMiraId ? 'Guardar Cambios' : 'Editar Mira' }}
+  </button>
+</form>
+
+<hr class="separator" />
+
+<h3 class="subtitle">Miras existentes</h3>
+
+<div class="miras-list" *ngIf="miras.length > 0; else noMirasTemplate">
+  <div class="mira-card" *ngFor="let mira of miras">
+    <img
+      class="mira-image"
+      [src]="'http://127.0.0.1:8000/storage/' + mira.imagen"
+      alt="Imagen de {{ mira.nombre }}"
+      loading="lazy"
+    />
+    <div class="mira-info">
+      <h4 class="mira-name">{{ mira.nombre }}</h4>
+      <p><strong>Código:</strong> {{ mira.codigo }}</p>
+      <p><strong>Tipo:</strong> {{ mira.tipo }}</p>
+      <div class="btn-group">
+        <button class="btn btn-warning btn-sm" (click)="editMira(mira)">Editar</button>
+        <button class="btn btn-danger btn-sm" (click)="deleteMira(mira.id)">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #noMirasTemplate>
+  <p class="no-miras-message">No hay miras disponibles actualmente.</p>
+</ng-template>
+
+<hr class="separator" />
+
+<h3 class="subtitle">Miras pendientes por aprobación</h3>
+
+<div class="miras-list" *ngIf="mirasPendientes.length > 0; else noPendientes">
+  <div class="mira-card" *ngFor="let mira of mirasPendientes">
+    <img
+      class="mira-image"
+      [src]="'http://127.0.0.1:8000/storage/' + mira.imagen"
+      alt="Imagen de {{ mira.nombre }}"
+      loading="lazy"
+    />
+    <div class="mira-info">
+      <h4 class="mira-name">{{ mira.nombre }}</h4>
+      <p><strong>Código:</strong> {{ mira.codigo }}</p>
+      <p><strong>Tipo:</strong> {{ mira.tipo }}</p>
+      <div class="btn-group">
+        <button (click)="aprobarMira(mira.id)" class="btn btn-success btn-sm">Aprobar</button>
+        <button (click)="rechazarMira(mira.id)" class="btn btn-danger btn-sm">Rechazar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #noPendientes>
+  <p class="no-miras-message">No hay miras pendientes por aprobar.</p>
+</ng-template>

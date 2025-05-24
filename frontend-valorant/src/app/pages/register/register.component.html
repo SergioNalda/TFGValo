@@ -1,0 +1,41 @@
+<div class="register-wrapper">
+  <form class="register-form" (ngSubmit)="onRegister()" #registerForm="ngForm">
+    <h2 class="register-title">Crear cuenta</h2>
+
+    <!-- Aviso de error global -->
+    <div *ngIf="message" [ngClass]="{'alert': true, 'error': messageType === 'error', 'success': messageType === 'success'}">
+      {{ message }}
+    </div>
+
+    <div class="input-group">
+      <label for="username">Nombre de usuario</label>
+      <input type="text" id="username" name="username" [(ngModel)]="username" required #usernameField="ngModel" placeholder="Usuario" />
+      <div *ngIf="usernameField.invalid && usernameField.touched" class="error">Obligatorio</div>
+    </div>
+
+    <div class="input-group">
+      <label for="email">Correo electrónico</label>
+      <input type="email" id="email" name="email" [(ngModel)]="email" required #emailField="ngModel" placeholder="ejemplo@email.com" />
+      <div *ngIf="emailField.invalid && emailField.touched" class="error">Obligatorio</div>
+    </div>
+
+    <div class="input-group">
+      <label for="password">Contraseña</label>
+      <input type="password" id="password" name="password" [(ngModel)]="password" required #passwordField="ngModel" placeholder="********" />
+      <div *ngIf="passwordField.invalid && passwordField.touched" class="error">Obligatorio</div>
+    </div>
+
+    <div class="input-group">
+      <label for="password_confirmation">Confirmar Contraseña</label>
+      <input type="password" id="password_confirmation" name="password_confirmation" [(ngModel)]="password_confirmation" required #passwordConfirmationField="ngModel" placeholder="********" />
+      <div *ngIf="passwordConfirmationField.invalid && passwordConfirmationField.touched" class="error">Obligatorio</div>
+      <div *ngIf="password !== password_confirmation && passwordConfirmationField.touched" class="error">Las contraseñas no coinciden</div>
+    </div>
+
+    <button type="submit" class="register-button" [disabled]="registerForm.invalid || password !== password_confirmation">
+      Registrarse
+    </button>
+
+    <p class="login-link">¿Ya tienes cuenta? <a routerLink="/login">Inicia sesión</a></p>
+  </form>
+</div>

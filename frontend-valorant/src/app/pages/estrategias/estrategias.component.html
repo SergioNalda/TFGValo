@@ -1,0 +1,131 @@
+<app-header></app-header>
+
+<div class="estrategias-page">
+  <aside class="sidebar">
+    <div class="ordenar-por">
+      <h3>Ordenar por:</h3>
+      <button [class.active]="filtroActivo === 'micros'" (click)="setFiltro('micros')">Micros</button>
+      <button [class.active]="filtroActivo === 'lineup'" (click)="setFiltro('lineup')">Lineup</button>
+      <button [class.active]="filtroActivo === 'guias'" (click)="setFiltro('guias')">Guías</button>
+      <button [class.active]="filtroActivo === 'todas'" (click)="setFiltro('todas')">Todas</button>
+    </div>
+
+    <div class="filtro-cuadro">
+      <h4>Agentes</h4>
+      <div class="agentes-grid">
+        <img *ngFor="let agente of agentes"
+             [src]="agente.imagen"
+             [alt]="agente.nombre"
+             class="agente-img"
+             [class.active]="agenteActivo === agente.nombre"
+             (click)="setAgenteFiltro(agente.nombre)" />
+      </div>
+    </div>
+
+    <div class="espacio-separador"></div>
+
+    <div class="filtro-cuadro">
+      <h4>Mapas</h4>
+      <div class="mapas-grid">
+        <img *ngFor="let mapa of mapas"
+             [src]="mapa.imagen"
+             [alt]="mapa.nombre"
+             class="mapa-img"
+             [class.active]="mapaActivo === mapa.nombre"
+             (click)="setMapaFiltro(mapa.nombre)" />
+      </div>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <div class="crear-btn-container" *ngIf="isLoggedIn">
+      <button (click)="goToCrearEstrategia()" class="crear-btn">Crear Estrategia</button>
+    </div>
+
+    <div class="estrategias-container">
+      <div *ngFor="let estrategia of estrategiasFiltradas" class="card">
+        <div class="video-container" role="button" tabindex="0" (click)="isLoggedIn ? abrirVideo(estrategia) : mostrarAvisoLogin()">
+          <video [src]="'http://localhost:8000/storage/' + estrategia.video"
+                 class="video-img"
+                 muted
+                 preload="metadata"></video>
+
+          <button (click)="isLoggedIn ? toggleFavorito(estrategia.id) : mostrarAvisoLogin(); $event.stopPropagation()"
+              [ngClass]="{'favorito-activo': esFavorito(estrategia.id)}"
+              class="btn-favorito">
+              <ng-container *ngIf="esFavorito(estrategia.id); else noFav">💖</ng-container>
+              <ng-template #noFav>🤍</ng-template>
+          </button>
+
+          <div class="titulo-overlay">{{ estrategia.titulo }}</div>
+          <div class="mapa-overlay">{{ estrategia.mapa }}</div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div *ngIf="mostrarMensajeFavorito" class="alerta-favorito">
+    {{ mensajeFavorito }}
+</div>
+
+<div *ngIf="!isLoggedIn" class="aviso-profesional">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 2a10 10 0 1 0 10 10A10.0114 10.0114 0 0 0 12 2Zm1 14h-2v-2h2Zm0-4h-2V7h2Z"/>
+  </svg>
+  Por favor, inicia sesión para ver el contenido.
+</div>
+
+<!-- MODAL -->
+<div *ngIf="videoAmpliado && isLoggedIn" class="video-modal" (click)="cerrarVideo()">
+  <div class="video-modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <span class="tipo-modal">{{ videoAmpliado.tipo }}</span>
+      <button class="cerrar-icon" (click)="cerrarVideo()">×</button>
+    </div>
+    <h2 class="modal-title">{{ videoAmpliado.titulo }}</h2>
+
+    <div class="modal-mapa-info">
+      <div class="mapa-info-left">
+        <img *ngIf="videoAmpliado?.mapa"
+             [src]="getMapaImagen(videoAmpliado.mapa || '')"
+             [alt]="videoAmpliado.mapa"
+             class="mapa-modal-img" />
+        <p class="nombre-mapa">{{ videoAmpliado.mapa }}</p>
+      </div>
+
+      <div class="agentes-info-right" *ngIf="videoAmpliado.agentes && videoAmpliado.agentes.length > 0">
+        <h4>Agentes</h4>
+        <div class="agentes-lista">
+          <img *ngFor="let agente of videoAmpliado.agentes"
+               [src]="getAgenteImagen(agente)"
+               [alt]="agente"
+               class="agente-modal-img" />
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-video-wrapper">
+      <iframe
+        [src]="'http://localhost:8000/storage/' + videoAmpliado.video | safeUrl"
+        width="100%"
+        height="400"
+        frameborder="0"
+        allowfullscreen
+      ></iframe>
+    </div>
+
+    <p class="descripcion-modal">{{ videoAmpliado.descripcion }}</p>
+  </div>
+</div>
+
+<footer class="main-footer">
+  <div class="footer-content">
+    <p>&copy; 2025 SergioNalda - Todos los derechos reservados</p>
+    <div class="footer-links">
+      <a routerLink="/about">Acerca de</a>
+      <a routerLink="/terms">Términos</a>
+      <a routerLink="/contact">Contacto</a>
+    </div>
+  </div>
+</footer>

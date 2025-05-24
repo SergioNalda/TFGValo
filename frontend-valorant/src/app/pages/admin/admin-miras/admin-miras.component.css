@@ -1,0 +1,262 @@
+/* TITULOS */
+.title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #ffffff; /* texto blanco */
+  margin-bottom: 1rem;
+  border-bottom: 3px solid #3399ff; /* azul suave para borde */
+  padding-bottom: 0.3rem;
+}
+
+.subtitle {
+  font-size: 1.8rem;
+  margin: 2rem 0 1rem;
+  color: #e0e6f1; /* subtítulo claro */
+}
+
+/* ALERTAS */
+.alert {
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+  transition: opacity 0.3s ease;
+}
+
+.alert-success {
+  background-color: #27472a; /* verde oscuro suave */
+  color: #b2d8b2; /* verde claro */
+  border: 1px solid #3c7d3c;
+}
+
+.alert-error {
+  background-color: #601616; /* rojo oscuro */
+  color: #f1b0b0; /* rojo claro */
+  border: 1px solid #802020;
+}
+
+/* FORMULARIO */
+.mira-form {
+  background: #1e2738; /* fondo oscuro */
+  padding: 1.8rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgb(0 0 0 / 0.5);
+  max-width: 700px;
+  margin-bottom: 3rem;
+  user-select: none;
+  color: #dce3f0; /* texto claro */
+}
+
+.form-row {
+  display: flex;
+  gap: 1.6rem;
+  margin-bottom: 1.6rem;
+  flex-wrap: wrap;
+}
+
+.form-group {
+  flex: 1 1 250px;
+  display: flex;
+  flex-direction: column;
+}
+
+.file-group input[type="file"] {
+  padding: 0.2rem 0;
+  color: #dce3f0;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: #aabbcc; /* label gris claro */
+  user-select: text;
+}
+
+.required {
+  color: #ff6f61; /* rojo suave para required */
+  margin-left: 4px;
+}
+
+/* Inputs y selects */
+input[type="text"],
+select {
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  border: 2px solid #556677; /* borde gris-azul oscuro */
+  border-radius: 8px;
+  background-color: #2c374f; /* fondo input oscuro */
+  color: #dce3f0; /* texto claro */
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]::placeholder,
+select::placeholder {
+  color: #8a99b8; /* placeholder gris claro */
+}
+
+input[type="text"]:focus,
+select:focus {
+  border-color: #3399ff; /* azul vivo */
+  outline: none;
+}
+
+.invalid {
+  border-color: #ff6f61 !important; /* borde rojo suave */
+}
+
+/* Mensajes de error */
+.error-message {
+  color: #ff6f61; /* rojo suave */
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+  font-weight: 500;
+}
+
+/* Botones */
+.btn {
+  cursor: pointer;
+  padding: 0.55rem 1.3rem;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  transition: background-color 0.3s ease;
+  user-select: none;
+  box-shadow: 0 3px 8px rgb(51 153 255 / 0.6);
+  color: white;
+  background-color: #3399ff; /* azul vivo */
+}
+
+.btn-primary:disabled {
+  background-color: #7a2f2f; /* rojo apagado */
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #1a73e8; /* azul más oscuro */
+}
+
+/* Botones pequeños para cards */
+.btn-sm {
+  font-size: 0.85rem;
+  padding: 0.3rem 0.8rem;
+  box-shadow: none;
+}
+
+/* Warning y Danger */
+.btn-warning {
+  background-color: #ffa726; /* naranja */
+  color: #fff;
+  box-shadow: 0 3px 8px rgb(255 167 38 / 0.7);
+}
+
+.btn-warning:hover {
+  background-color: #fb8c00;
+}
+
+.btn-danger {
+  background-color: #ff6f61; /* rojo suave */
+  color: #fff;
+  box-shadow: 0 3px 8px rgb(255 111 97 / 0.7);
+}
+
+.btn-danger:hover {
+  background-color: #e55349;
+}
+
+/* SEPARADOR */
+.separator {
+  border: none;
+  border-top: 2px solid #3a4560; /* azul grisáceo oscuro */
+  margin: 3rem 0;
+}
+
+/* LISTA DE MIRAS */
+.miras-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.6rem;
+  justify-content: flex-start;
+}
+
+/* CARD */
+.mira-card {
+  display: flex;
+  flex-direction: column;
+  width: 230px;
+  background: #2c374f; /* fondo card oscuro */
+  box-shadow: 0 6px 18px rgb(0 0 0 / 0.6);
+  border-radius: 14px;
+  overflow: hidden;
+  user-select: none;
+  transition: transform 0.25s ease;
+  color: #dce3f0; /* texto claro */
+}
+
+.mira-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgb(51 153 255 / 0.4);
+}
+
+.mira-image {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-bottom: 1px solid #44556a;
+  user-select: none;
+}
+
+.mira-info {
+  padding: 1rem 1.2rem;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+  box-sizing: border-box;
+}
+
+.mira-name {
+  margin: 0;
+  font-weight: 700;
+  color: #ffffff; /* título mira blanco */
+  font-size: 1.15rem;
+  user-select: text;
+}
+
+.btn-group {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+/* Mensaje si no hay miras */
+.no-miras-message {
+  font-style: italic;
+  color: #a0a8c0;
+  margin-top: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .form-row {
+    flex-direction: column;
+  }
+
+  .miras-list {
+    justify-content: center;
+  }
+}
+
+.no-miras-message {
+  font-style: italic;
+  font-size: 1rem;
+  color: #a0a8c0;
+  padding: 1rem;
+  background-color: #1e2738;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 0.2);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+

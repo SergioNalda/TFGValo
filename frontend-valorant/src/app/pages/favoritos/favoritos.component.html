@@ -1,0 +1,65 @@
+<app-header></app-header>
+
+<div class="main-wrapper">
+  <main class="main-content">
+    <h2>Mis Favoritos</h2>
+
+    <div *ngIf="favoritos.length > 0; else noFavoritos" class="favoritos-container">
+      <div *ngFor="let estrategia of favoritos" class="card" (click)="abrirModal(estrategia)">
+        <div class="video-container" role="button" tabindex="0">
+          <video
+            [src]="'http://localhost:8000/storage/' + estrategia.video"
+            class="video-img"
+            muted
+            preload="metadata"
+          ></video>
+          <div class="titulo-overlay">{{ estrategia.titulo }}</div>
+          <div class="mapa-overlay">{{ estrategia.mapa }}</div>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #noFavoritos>
+      <p class="no-favoritos">No tienes estrategias favoritas aún.</p>
+    </ng-template>
+
+    <!-- MODAL -->
+    <div *ngIf="estrategiaModal" class="video-modal" (click)="cerrarModal()">
+      <div class="video-modal-content" (click)="$event.stopPropagation()">
+        <div class="modal-header">
+          <span class="tipo-modal">{{ estrategiaModal.tipo }}</span>
+          <button class="cerrar-icon" (click)="cerrarModal()">×</button>
+        </div>
+        <h2 class="modal-title">{{ estrategiaModal.titulo }}</h2>
+        <div class="modal-mapa-info">
+          <img
+            *ngIf="estrategiaModal.mapa"
+            [src]="getMapaImagen(estrategiaModal.mapa || '')"
+            [alt]="estrategiaModal.mapa"
+            class="mapa-modal-img"
+          />
+          <p class="nombre-mapa">{{ estrategiaModal.mapa }}</p>
+        </div>
+        <div class="modal-video-wrapper">
+          <iframe
+            [src]="getVideoUrl(estrategiaModal.video)"
+            frameborder="0"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <p class="descripcion-modal">{{ estrategiaModal.descripcion }}</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-content">
+      <p>&copy; 2025 SergioNalda - Todos los derechos reservados</p>
+      <div class="footer-links">
+        <a routerLink="/about">Acerca de</a>
+        <a routerLink="/terms">Términos</a>
+        <a routerLink="/contact">Contacto</a>
+      </div>
+    </div>
+  </footer>
+</div>

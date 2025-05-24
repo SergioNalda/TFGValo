@@ -1,0 +1,297 @@
+/* === Layout general === */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #0d0d0d;
+  color: #fff;
+  scroll-behavior: smooth;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.layout-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* === Ranking Container === */
+.ranking-container {
+  flex: 1;
+  background-image: url('/assets/fondos/FondoRank.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding: 60px 30px;
+  box-shadow: inset 0 0 40px rgba(255, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* === Ranking Title === */
+.ranking-title {
+  text-align: center;
+  font-size: 3rem;
+  color: #ffffff;
+  text-shadow: 0 0 15px #ff0000;
+  margin-bottom: 2rem;
+  letter-spacing: 3px;
+  animation: neonGlow 1.8s ease-in-out infinite alternate;
+  user-select: none;
+}
+
+@keyframes neonGlow {
+  from {
+    text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+  }
+  to {
+    text-shadow: 0 0 25px #ff0000, 0 0 40px #ff0000;
+  }
+}
+
+/* === Table Wrapper === */
+.ranking-table-wrapper {
+  width: 100%;
+  max-width: 720px;
+  overflow-x: auto;
+  animation: fadeIn 0.6s ease-in-out;
+  border-radius: 15px;
+  box-shadow:
+    0 0 15px rgba(255, 0, 0, 0.7),
+    inset 0 0 18px rgba(255, 0, 0, 0.9);
+  background: rgba(20, 0, 0, 0.7);
+}
+
+/* === Futuristic Table === */
+.futuristic-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 14px;
+  font-size: 1.15rem;
+  color: #fff;
+}
+
+.futuristic-table thead th {
+  background-color: #2a0000;
+  color: #ff4d4d;
+  padding: 18px 20px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-radius: 15px 15px 0 0;
+  user-select: none;
+  box-shadow: 0 0 10px #ff1a1a;
+}
+
+.futuristic-table tbody tr {
+  background: rgba(100, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  border-left: 6px solid #ff0000;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border-radius: 15px;
+  cursor: default;
+  box-shadow:
+    0 0 12px #ff3300cc,
+    inset 0 0 15px #ff3300cc;
+}
+
+.futuristic-table tbody tr:hover {
+  background: linear-gradient(90deg, rgba(255, 0, 0, 0.15), rgba(255, 100, 100, 0.1));
+  box-shadow: 0 0 30px rgba(255, 69, 0, 0.9),
+              inset 0 0 22px #ff3300cc;
+  transform: scale(1.04);
+}
+
+/* Celdas */
+.futuristic-table td {
+  padding: 18px 15px;
+  text-align: center;
+  color: #fff0f0;
+  user-select: none;
+  border-right: 1px solid rgba(255, 0, 0, 0.3);
+}
+
+.futuristic-table td:last-child {
+  border-right: none;
+}
+
+/* Nombre jugador */
+.username a {
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  text-shadow: 0 0 6px #ff0000;
+  cursor: pointer;
+}
+
+.username a:hover {
+  color: #ffd700;
+  text-decoration: none;
+  text-shadow: 0 0 10px #ffd700;
+}
+
+/* Medallas icono */
+.ranking-medal {
+  font-size: 1.6rem;
+  vertical-align: middle;
+  margin-right: 6px;
+  user-select: none;
+}
+
+/* === Medallas estilos === */
+.gold {
+  background: linear-gradient(90deg, #fff1a8, #ffd700);
+  color: #2b1d00;
+  border-left-color: #ffd700 !important;
+  font-weight: bold;
+  text-shadow: 0 0 5px #ffd700;
+}
+
+.silver {
+  background: linear-gradient(90deg, #f5f5f5, #c0c0c0);
+  color: #1f1f1f;
+  border-left-color: #c0c0c0 !important;
+  font-weight: bold;
+  text-shadow: 0 0 5px #b0b0b0;
+}
+
+.bronze {
+  background: linear-gradient(90deg, #e5a467, #cd7f32);
+  color: #2e1b00;
+  border-left-color: #cd7f32 !important;
+  font-weight: bold;
+  text-shadow: 0 0 5px #cd7f32;
+}
+
+/* Filas Top 10 */
+.top-row {
+  font-weight: 600;
+}
+
+/* === Footer === */
+.main-footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  background: #1a1a1a;
+  color: #ccc;
+  padding: 20px 0;
+  text-align: center;
+  border-top: 2px solid #ff0000;
+  box-shadow: 0 -5px 20px rgba(255, 0, 0, 0.4);
+  margin-top: auto;
+}
+
+.footer-content p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.footer-links {
+  margin-top: 10px;
+}
+
+.footer-links a {
+  margin: 0 10px;
+  color: #ff0000;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+}
+
+/* === Animations === */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scrollbar personalizado */
+.ranking-table-wrapper::-webkit-scrollbar {
+  height: 8px;
+}
+
+.ranking-table-wrapper::-webkit-scrollbar-thumb {
+  background: #ff0000;
+  border-radius: 6px;
+}
+
+.ranking-table-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.ranking-table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #ff4d4d;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .ranking-title {
+    font-size: 2rem;
+  }
+
+  .ranking-table-wrapper {
+    max-width: 100%;
+  }
+
+  .futuristic-table thead {
+    display: none;
+  }
+
+  .futuristic-table,
+  .futuristic-table tbody,
+  .futuristic-table tr,
+  .futuristic-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .futuristic-table tr {
+    margin-bottom: 1rem;
+    border: 1px solid #ff0000;
+    border-radius: 10px;
+    padding: 12px;
+    background: rgba(255, 0, 0, 0.1);
+  }
+
+  .futuristic-table td {
+    text-align: left;
+    padding-left: 1rem;
+    position: relative;
+    color: #fff;
+    border: none;
+  }
+
+  .futuristic-table td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.3rem;
+    color: #ff4d4d;
+    text-transform: uppercase;
+  }
+
+  .username a {
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  .username a:hover {
+    color: #ffd700;
+    text-decoration: none;
+  }
+}

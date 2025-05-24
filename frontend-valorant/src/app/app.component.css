@@ -1,0 +1,21 @@
+.main-content {
+  position: relative;
+}
+
+.interaction-blocker {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: transparent;
+  z-index: 9999;  /* Asegúrate que esté por encima del contenido */
+  cursor: not-allowed;
+}
+
+.main-content.interaction-blocked {
+  filter: grayscale(60%);
+  pointer-events: none; /* No responde a clics ni hover */
+  user-select: none;    /* No permite selección de texto */
+}
+
+.interaction-blocker {
+  pointer-events: auto; /* Solo este div recibe eventos */
+}

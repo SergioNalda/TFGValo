@@ -1,0 +1,18 @@
+<div class="admin-layout">
+  <nav class="sidebar">
+    <div class="logo">
+      <h1>Admin</h1>
+    </div>
+    <ul>
+      <li><a routerLink="estrategias" routerLinkActive="active"><span class="icon">📑</span> Estrategias</a></li>
+      <li><a routerLink="miras" routerLinkActive="active"><span class="icon">🎯</span> Miras</a></li>
+      <li><a routerLink="usuarios" routerLinkActive="active"><span class="icon">👥</span> Usuarios</a></li>
+      <li><a routerLink="/estrategias"><span class="icon">👀</span> Ver como usuario</a></li>
+    </ul>
+  </nav>
+
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+</div>
+

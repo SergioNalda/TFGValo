@@ -1,0 +1,244 @@
+/* === CONTENEDOR PRINCIPAL === */
+.form-container {
+  background-image: url('/assets/fondos/Form.jpg');
+  background-size: cover;
+  background-position: center;
+  padding: 4rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* === FORMULARIO === */
+.crear-estrategia-form {
+  background: linear-gradient(135deg, rgba(20, 20, 30, 0.95), rgba(40, 10, 20, 0.95));
+  padding: 3rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 0, 25, 0.6);
+  box-shadow:
+    0 0 30px rgba(255, 0, 25, 0.4),
+    inset 0 0 20px rgba(255, 0, 25, 0.2);
+  width: 100%;
+  max-width: 800px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(8px);
+}
+
+/* === TÍTULO === */
+.crear-estrategia-form h2 {
+  font-size: 2.8rem;
+  text-align: center;
+  color: #ff0019;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px #ff0019;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+/* === CAMPOS BASE === */
+.crear-estrategia-form input,
+.crear-estrategia-form select,
+.crear-estrategia-form textarea {
+  background: #1e2a38;
+  border: 1px solid #ff0019;
+  border-radius: 10px;
+  color: #f2f2f2;
+  padding: 1rem;
+  font-size: 1rem;
+  transition: 0.3s ease;
+  box-shadow: inset 0 0 10px rgba(255, 0, 25, 0.2);
+  box-sizing: border-box;
+}
+
+.crear-estrategia-form input:focus,
+.crear-estrategia-form textarea:focus,
+.crear-estrategia-form select:focus {
+  box-shadow: 0 0 15px #ff0019;
+  border-color: #ff0019;
+  outline: none;
+}
+
+/* === TEXTAREA === */
+.crear-estrategia-form textarea {
+  height: 160px;
+  resize: none;
+}
+
+/* === AGENTES === */
+.agentes-selection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: 1rem;
+}
+
+/* === AGENTE CARD === */
+.agente {
+  background: #2c3e50;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  padding: 0.8rem;
+  text-align: center;
+  transition: 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(255, 0, 25, 0.2);
+}
+
+.agente:hover {
+  transform: scale(1.05);
+  border-color: #ff0019;
+  box-shadow: 0 0 15px #ff0019;
+}
+
+.agente.selected {
+  background: rgba(255, 0, 25, 0.15);
+  border-color: #ff0019;
+  box-shadow: 0 0 20px #ff0019;
+}
+
+.agente img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 6px;
+}
+
+.agente span {
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* === SEPARADOR VISUAL === */
+.section-divider {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #ff0019, transparent);
+  margin: 2rem 0;
+  box-shadow: 0 0 10px #ff0019;
+}
+
+/* === MAPAS === */
+.mapa-selection {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.mapa-selection label {
+  font-weight: 600;
+  color: #f2f2f2;
+  display: block;
+  margin-bottom: 0.7rem;
+}
+
+.mapa-selection select {
+  background: #1e2a38;
+  border: 1px solid #ff0019;
+  border-radius: 10px;
+  padding: 1rem;
+  font-size: 1rem;
+  box-shadow: inset 0 0 10px rgba(255, 0, 25, 0.2);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* === SUBIDA DE VIDEO === */
+.file-upload {
+  margin-top: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.file-upload label {
+  font-weight: 600;
+  color: #f2f2f2;
+  display: block;
+  margin-bottom: 0.7rem;
+}
+
+.file-upload input[type="file"] {
+  background: #2c3e50;
+  border: 1px solid #ff0019;
+  padding: 1rem;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.file-upload input[type="file"]:hover {
+  background: #ff0019;
+  box-shadow: 0 0 15px #ff0019;
+}
+
+/* === BOTÓN === */
+.crear-estrategia-form button {
+  background: #ff0019;
+  border: none;
+  padding: 1.3rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  border-radius: 12px;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: 0 0 20px rgba(255, 0, 25, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.crear-estrategia-form button:hover:not(:disabled) {
+  transform: scale(1.05);
+  background: #e00015;
+  box-shadow: 0 0 30px #ff0019;
+}
+
+.crear-estrategia-form button:disabled {
+  background: #555;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* === ERROR MESSAGE === */
+.error-message {
+  background: #ff0019;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.success-message {
+  color: green;
+  font-weight: 600;
+  margin-top: 1rem;
+  background-color: #e0ffe0;
+  padding: 10px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.alerta-login {
+  background-color: #ffebcc;
+  color: #5c3b00;
+  padding: 1rem 1.5rem;
+  border: 1px solid #ffa726;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin: 1.5rem auto;
+  max-width: 600px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+

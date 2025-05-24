@@ -1,0 +1,42 @@
+<div class="login-wrapper">
+  <form (ngSubmit)="onLogin()" #loginForm="ngForm" class="login-form" novalidate>
+    <h2 class="login-title">ACCEDE A TU CUENTA</h2>
+
+    <!-- ALERTA DE ERROR -->
+    <div *ngIf="errorMessage" class="alert alert-error">
+      <span>{{ errorMessage }}</span>
+      <button type="button" class="close-btn" (click)="closeError()">×</button>
+    </div>
+
+    <div class="input-group">
+      <label for="email">EMAIL</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        [(ngModel)]="loginData.email"
+        required
+        email
+      />
+    </div>
+
+    <div class="input-group">
+      <label for="password">CONTRASEÑA</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        [(ngModel)]="loginData.password"
+        required
+        minlength="6"
+      />
+    </div>
+
+    <button type="submit" [disabled]="!loginForm.valid" class="login-button">ENTRAR</button>
+
+    <div class="register-link">
+      <span>¿No tienes cuenta?</span>
+      <a routerLink="/register">Regístrate aquí</a>
+    </div>
+  </form>
+</div>

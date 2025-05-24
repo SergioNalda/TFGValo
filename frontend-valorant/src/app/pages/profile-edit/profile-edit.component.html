@@ -1,0 +1,32 @@
+<div class="profile-edit-container">
+  <h2>Editar Perfil</h2>
+
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="profile-form">
+    <div class="form-group">
+      <label for="name">Nombre</label>
+      <input id="name" type="text" formControlName="name" />
+      <div class="error" *ngIf="profileForm.get('name')?.touched && profileForm.get('name')?.invalid">
+        El nombre es obligatorio.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Descripción</label>
+      <textarea id="description" formControlName="description" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="photo">Foto de perfil</label>
+      <input type="file" (change)="onFileChange($event)" />
+      <div class="preview" *ngIf="previewImage">
+        <img *ngIf="previewImage" [src]="previewImage" alt="Foto de perfil" class="profile-photo"/>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button type="submit" [disabled]="loading || profileForm.invalid">Guardar Cambios</button>
+    </div>
+
+    <div *ngIf="message" class="message">{{ message }}</div>
+  </form>
+</div>

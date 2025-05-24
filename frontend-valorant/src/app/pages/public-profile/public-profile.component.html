@@ -1,0 +1,30 @@
+<div *ngIf="loading" class="status">Cargando perfil...</div>
+<div *ngIf="error" class="status error">{{ error }}</div>
+
+<button class="close-btn" (click)="goBack()">✖ Volver al ranking</button>
+
+<div *ngIf="user" class="profile-container">
+  <div class="profile-header">
+    <h2>{{ user.name }}</h2>
+    <div class="profile-info">
+      <label>📄 Descripción:</label>
+      <p>{{ user.description || 'Descripción no disponible' }}</p>
+    </div>
+  </div>
+
+  <div class="strategies-section">
+    <h3>🧠 Estrategias creadas</h3>
+    <ul *ngIf="user.estrategias?.length; else noStrategies">
+      <li *ngFor="let strategy of user.estrategias">
+        🛰️ {{ strategy.titulo || 'Sin título' }}
+      </li>
+    </ul>
+    <ng-template #noStrategies>
+      <p class="empty-message">Este usuario no ha publicado estrategias.</p>
+    </ng-template>
+  </div>
+</div>
+
+<ng-template #noUser>
+  <p class="status error">No se encontró el usuario.</p>
+</ng-template>

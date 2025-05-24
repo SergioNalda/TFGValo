@@ -1,0 +1,120 @@
+.profile-edit-container {
+  max-width: 600px;
+  width: 90%;
+  margin: 3rem auto;
+  padding: 2rem 2rem;
+  background: rgba(15, 15, 30, 0.9);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  backdrop-filter: blur(12px);
+  border-radius: 1.5rem;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
+  font-family: 'Orbitron', sans-serif;
+  color: #e0f7fa;
+}
+
+
+
+.profile-edit-container h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #00eaff;
+  margin-bottom: 2rem;
+  text-shadow: 0 0 10px #00eaff;
+}
+
+.profile-form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.profile-form label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-weight: 700;
+  color: #00faff;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.profile-form input[type="text"],
+.profile-form textarea {
+  width: 100%;
+  padding: 0.75rem 1rem; /* más padding horizontal para separar del borde */
+  border: 1px solid #0ff; /* color neón para estilo futurista */
+  border-radius: 0.8rem;
+  font-size: 1rem;
+  background: rgba(0, 0, 30, 0.7);
+  color: #e0f7fa;
+  box-sizing: border-box; /* incluye padding y borde en el ancho total */
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+
+.profile-form input[type="text"]:focus,
+.profile-form textarea:focus {
+  outline: none;
+  border-color: #0ff;
+  background-color: rgba(0, 0, 50, 0.9);
+}
+
+.profile-form .error {
+  color: #ff5555;
+  font-size: 0.8rem;
+  margin-top: 0.3rem;
+}
+
+.profile-form input[type="file"] {
+  margin-top: 0.5rem;
+  color: #00ffff;
+}
+
+.preview {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.preview img {
+  max-width: 150px;
+  max-height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #00ffff;
+  box-shadow: 0 0 12px #00ffff;
+}
+
+.actions {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.actions button {
+  background: linear-gradient(135deg, #00eaff, #005eff);
+  color: #000;
+  padding: 0.75rem 1.75rem;
+  border: none;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  box-shadow: 0 0 15px #00eaff;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.actions button:disabled {
+  background: #0f2a3f;
+  color: #555;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.actions button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #00ffff, #0084ff);
+  transform: scale(1.05);
+}
+
+.message {
+  margin-top: 1rem;
+  text-align: center;
+  font-weight: 600;
+  color: #00ff99;
+  text-shadow: 0 0 5px #00ff99;
+}
