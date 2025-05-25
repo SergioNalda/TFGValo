@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://tudominio.com/api'
+  apiUrl: 'https://placeholder.com/api'
 };

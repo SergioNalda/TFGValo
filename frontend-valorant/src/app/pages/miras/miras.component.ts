@@ -40,7 +40,7 @@ export class MirasComponent {
       this.miras = data;
     });
   }
-
+  
   abrirModal(mira: Mira) {
     this.miraSeleccionada = mira;
     this.modalAbierto = true;
