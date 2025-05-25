@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://placeholder.com/api'
+  apiUrl: 'https://valorant-api.onrender.com/api'
 };
