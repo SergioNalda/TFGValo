@@ -130,4 +130,5 @@ class MiraController extends Controller
 
         return response()->json(['message' => 'Estado actualizado correctamente', 'mira' => $mira]);
     }
+    
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AdminEstrategiasService, Estrategia } from './admin-estrategias.service';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { environment } from '../../../../environments/environment';
 
 interface Agente {
   nombre: string;
@@ -284,11 +285,11 @@ cerrarConfirmacion() {
     }
   });
 }
-  getVideoUrl(path: string): string { 
-    if (!path) return '';
-    if (path.startsWith('http')) return path;
-    return `http://localhost:8000/storage/${path}`;
-  }
+  getVideoUrl(path: string): string {
+  if (!path) return '';
+  if (path.startsWith('http')) return path;
+  return `${environment.storageUrl}/${path}`;
+}
 
   mostrarMensajeExito(mensaje: string) {
   this.mensajeExito = mensaje;

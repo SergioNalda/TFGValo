@@ -1,8 +1,7 @@
-// src/app/services/user.service.ts
-
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface User {
   id: number;
@@ -16,7 +15,7 @@ export interface User {
 })
 export class UserService {
   private userSubject = new BehaviorSubject<User | null>(null);
-  private apiUrl = 'http://localhost:8000/api'; // Asegúrate de que esto sea correcto según tu backend
+  private API_URL = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
@@ -29,15 +28,15 @@ export class UserService {
   }
 
   getPublicProfile(id: number): Observable<User> {
-    return this.http.get<User>(`${this.apiUrl}/public-profile/${id}`);
+    return this.http.get<User>(`${this.API_URL}/public-profile/${id}`);
   }
 
   obtenerEstrategiasPublicas(id: number | string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/users/${id}/estrategias`);
+    return this.http.get<any[]>(`${this.API_URL}/users/${id}/estrategias`);
   }
 
   // OPCIONAL: si en lugar de ID usas "username" en la URL
   getPublicProfileByUsername(username: string): Observable<User> {
-    return this.http.get<User>(`${this.apiUrl}/public-profile/username/${username}`);
+    return this.http.get<User>(`${this.API_URL}/public-profile/username/${username}`);
   }
 }

@@ -11,11 +11,22 @@ use Illuminate\Support\Facades\Storage;
 class EstrategiaController extends Controller
 {
     public function index()
-    {
-        $estrategias = Estrategia::with('user')->where('is_approved', true)->orderBy('created_at', 'desc')->get();
-        return response()->json($estrategias);
+{
+    $estrategias = Estrategia::with('user')->where('is_approved', true)->orderBy('created_at', 'desc')->get();
 
-    }
+    // Mapear para añadir URL completa al video
+    $estrategias->transform(function($estrategia) {
+        if ($estrategia->video) {
+            $estrategia->video_url = url('storage/' . $estrategia->video);
+        } else {
+            $estrategia->video_url = null;
+        }
+        return $estrategia;
+    });
+
+    return response()->json($estrategias);
+}
+
 
 
     public function store(Request $request)

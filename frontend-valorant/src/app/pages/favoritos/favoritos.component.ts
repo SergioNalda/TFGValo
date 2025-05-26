@@ -4,6 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { HeaderComponent } from "../../shared/header/header.component";
+import { environment } from '../../../environments/environment';
 
 
 @Component({
@@ -19,8 +20,9 @@ export class FavoritosComponent implements OnInit {
   favoritos: any[] = [];
   userId: number | null = null;
   estrategiaModal: any = null;
+  public environment = environment;
 
-  constructor(private authService: AuthService, private http: HttpClient,private sanitizer: DomSanitizer) {}
+  constructor(private authService: AuthService, private http: HttpClient,private sanitizer: DomSanitizer,) {}
 
   public mapas = [
     { nombre: 'Ascent', imagen: 'assets/mapas/ascent.jpg' },
@@ -47,7 +49,7 @@ export class FavoritosComponent implements OnInit {
 
   cargarFavoritos() {
     if (!this.userId) return;
-    this.http.get<any[]>(`http://localhost:8000/api/favoritos/${this.userId}`).subscribe(data => {
+    this.http.get<any[]>(`${environment.apiUrl}/favoritos/${this.userId}`).subscribe(data => {
       this.favoritos = data;
     });
   }
@@ -71,8 +73,8 @@ export class FavoritosComponent implements OnInit {
   }
 
   getVideoUrl(video: string): SafeResourceUrl {
-    return this.sanitizer.bypassSecurityTrustResourceUrl('http://localhost:8000/storage/' + video);
-  }
+  return this.sanitizer.bypassSecurityTrustResourceUrl(this.getStorageUrl(video));
+}
 
   private normalize(str: string): string {
     return str
@@ -80,4 +82,10 @@ export class FavoritosComponent implements OnInit {
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, ''); // elimina tildes
   }
+
+  getStorageUrl(path: string): string {
+  const baseUrl = environment.apiUrl.replace('/api', '');
+  return `${baseUrl}/storage/${path}`;
+}
+
 }

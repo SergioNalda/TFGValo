@@ -42,10 +42,10 @@
         *ngFor="let mira of mirasFiltradas"
         (click)="abrirModal(mira)">
         <img
-          *ngIf="mira.imagen"
-          [src]="'http://127.0.0.1:8000/storage/' + mira.imagen"
-          [alt]="mira.nombre"
-        />
+        *ngIf="mira.imagen"
+        [src]="environment.storageUrl + '/' + mira.imagen"
+        [alt]="mira.nombre"
+      />
         <p class="mira-titulo">{{ mira.nombre }}</p>
       </div>
     </div>
@@ -56,10 +56,10 @@
     <div class="modal-content">
       <span class="close" (click)="cerrarModal()">&times;</span>
       <img
-        *ngIf="miraSeleccionada?.imagen"
-        [src]="'http://127.0.0.1:8000/storage/' + miraSeleccionada?.imagen"
-        [alt]="miraSeleccionada?.nombre"
-      />
+      *ngIf="miraSeleccionada?.imagen"
+      [src]="environment.storageUrl + '/' + miraSeleccionada?.imagen"
+      [alt]="miraSeleccionada?.nombre"
+    />
       <h2>{{ miraSeleccionada?.nombre }}</h2>
       <button (click)="copiarCodigo()">
         <i class="fas fa-copy"></i> Copiar Código

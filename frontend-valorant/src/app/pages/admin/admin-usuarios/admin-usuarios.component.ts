@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AdminUserService } from '../../../services/admin-user.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-admin-usuarios',
@@ -16,7 +17,7 @@ export class AdminUsuariosComponent implements OnInit {
   modalVisible = false;
   modalMessage = '';
   modalConfirmCallback: (() => void) | null = null;
-
+  public environment = environment;
   notification = '';
   notificationType: 'success' | 'error' | '' = '';
 

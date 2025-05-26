@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from "../../shared/header/header.component";
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { environment } from '../../../environments/environment';
 
 @Component({
   standalone: true,
@@ -20,12 +21,14 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
     HeaderComponent
   ],
 })
+
 export class MirasComponent {
   miras: Mira[] = [];
   searchText: string = '';
   tipoSeleccionado: string = 'all';
   modalAbierto = false;
   miraSeleccionada: Mira | null = null;
+  public environment = environment;
 
   codigoCopiado = false;
 

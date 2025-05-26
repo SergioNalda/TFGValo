@@ -8,7 +8,7 @@
       <div *ngFor="let estrategia of favoritos" class="card" (click)="abrirModal(estrategia)">
         <div class="video-container" role="button" tabindex="0">
           <video
-            [src]="'http://localhost:8000/storage/' + estrategia.video"
+            [src]="getStorageUrl(estrategia.video)"
             class="video-img"
             muted
             preload="metadata"

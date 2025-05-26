@@ -1,4 +1,3 @@
-// src/app/interceptors/auth.interceptor.ts
 import { Injectable } from '@angular/core';
 import {
   HttpRequest,
@@ -9,8 +8,11 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { AuthService } from './services/auth.service'; // Ajusta el path según tu estructura
+import { AuthService } from './services/auth.service';
 import { Router } from '@angular/router';
+import { environment } from '../environments/environment';
+
+const apiUrl = environment.apiUrl;  // Solo para tener disponible la URL base si hace falta
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {

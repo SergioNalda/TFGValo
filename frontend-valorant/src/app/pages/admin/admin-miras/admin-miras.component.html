@@ -77,8 +77,8 @@
   <div class="mira-card" *ngFor="let mira of miras">
     <img
       class="mira-image"
-      [src]="'http://127.0.0.1:8000/storage/' + mira.imagen"
-      alt="Imagen de {{ mira.nombre }}"
+      [src]="environment.apiUrl.replace('/api', '') + '/storage/' + mira.imagen"
+      alt="Imagen de {{ mira.nombre   }}"
       loading="lazy"
     />
     <div class="mira-info">
@@ -105,7 +105,7 @@
   <div class="mira-card" *ngFor="let mira of mirasPendientes">
     <img
       class="mira-image"
-      [src]="'http://127.0.0.1:8000/storage/' + mira.imagen"
+      [src]="environment.apiUrl.replace('/api', '') + '/storage/' + mira.imagen"
       alt="Imagen de {{ mira.nombre }}"
       loading="lazy"
     />

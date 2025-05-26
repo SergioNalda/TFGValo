@@ -8,6 +8,7 @@ import { SafeUrlPipe } from '../../pipes/safe-url.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Component({
   standalone: true,
@@ -22,6 +23,7 @@ export class EstrategiasComponent implements OnInit {
   public isLoggedIn = false;
   public videoAmpliado: Estrategia | null = null;
   public userName: string | null = null;
+  public environment = environment;
 
   public agentes = [
     { nombre: 'phoenix', imagen: 'assets/agentes/phoenix.png' },
@@ -75,7 +77,7 @@ export class EstrategiasComponent implements OnInit {
   const token = this.authService.getToken();
   if (!token || !userId) return;
 
-  this.http.post('http://localhost:8000/api/favoritos', {
+  this.http.post(`${environment.apiUrl}/favoritos`, {
     estrategia_id: estrategiaId
   }, {
     headers: {
@@ -283,7 +285,7 @@ getMapaImagen(nombreMapa: string): string {
     const token = this.authService.getToken();
     if (!token) return;
 
-    this.http.get<any[]>('http://localhost:8000/api/favoritos', {
+    this.http.get<any[]>(`${environment.apiUrl}/favoritos`, {
       headers: { Authorization: `Bearer ${token}` }
     }).subscribe({
       next: (data) => {
@@ -301,7 +303,7 @@ getMapaImagen(nombreMapa: string): string {
 
   if (this.favoritos.includes(estrategiaId)) {
     // Quitar favorito
-    this.http.delete(`http://localhost:8000/api/favoritos/${this.userId}/${estrategiaId}`, {
+    this.http.delete(`${environment.apiUrl}/favoritos/${this.userId}/${estrategiaId}`, {
       headers: { Authorization: `Bearer ${token}` }
     }).subscribe({
       next: () => {
@@ -315,7 +317,7 @@ getMapaImagen(nombreMapa: string): string {
   } else {
     // Añadir favorito
     const favorito = { user_id: this.userId, estrategia_id: estrategiaId };
-    this.http.post('http://localhost:8000/api/favoritos', favorito, {
+    this.http.post(`${environment.apiUrl}/favoritos`, favorito, {
       headers: { Authorization: `Bearer ${token}` }
     }).subscribe({
       next: () => {
@@ -343,7 +345,7 @@ mostrarMensaje(texto: string) {
   const token = this.authService.getToken();
   if (!token) return;
 
-  this.http.delete(`http://localhost:8000/api/favoritos/${estrategiaId}`, {
+  this.http.delete(`${environment.apiUrl}/favoritos/${estrategiaId}`, {
     headers: {
       Authorization: `Bearer ${token}`
     }

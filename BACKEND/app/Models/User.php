@@ -79,4 +79,13 @@ class User extends Authenticatable implements JWTSubject
     return $this->belongsToMany(Estrategia::class, 'favoritos');
     }
 
+    public function getProfilePhotoUrlAttribute()
+{
+    if ($this->profile_photo) {
+        return url('storage/' . $this->profile_photo);
+    }
+    return null; // O url a imagen default si quieres
+}
+
+
 }

@@ -1,4 +1,5 @@
 export interface Mira {
+  descripcion: any;
   tipo: string;
 imagen: any;
 nombre: any;

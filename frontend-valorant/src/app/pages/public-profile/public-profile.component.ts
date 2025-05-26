@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
+
 @Component({
   selector: 'app-public-profile',
   templateUrl: './public-profile.component.html',
@@ -13,6 +15,7 @@ export class PublicProfileComponent implements OnInit {
   user: any = null;
   loading = true;
   error: string | null = null;
+  environment = environment;
 
   constructor(
     private route: ActivatedRoute,

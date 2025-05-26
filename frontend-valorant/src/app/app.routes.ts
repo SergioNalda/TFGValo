@@ -16,7 +16,6 @@ import { NgModule } from '@angular/core';
 import { CrearMiraComponent } from './pages/crear-mira-component/crear-mira..component';
 import { PublicProfileComponent } from './pages/public-profile/public-profile.component';
 
-
 export const routes: Routes = [
   { path: '', redirectTo: '/estrategias', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },

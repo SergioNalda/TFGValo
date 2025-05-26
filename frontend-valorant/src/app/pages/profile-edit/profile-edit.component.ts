@@ -4,6 +4,7 @@ import { ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angula
 import { ProfileService } from '../../services/profile.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';  // IMPORTAR AuthService
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-profile-edit',
@@ -36,25 +37,24 @@ export class ProfileEditComponent implements OnInit {
   }
 
   loadProfile() {
-    this.profileService.getProfile().subscribe({
-      next: (user) => {
-        this.profileForm.patchValue({
-          name: user.name,
-          description: user.description || ''
-        });
-        if(user.profile_photo){
-          this.previewImage = `http://localhost:8000/storage/${user.profile_photo}`;
-        }
-        // Actualiza el usuario global en AuthService
-        this.authService.setCurrentUser(user);
-        localStorage.setItem('currentUser', JSON.stringify(user));
-      },
-      error: (err) => {
-        this.message = 'Error cargando perfil.';
-        console.error(err);
+  this.profileService.getProfile().subscribe({
+    next: (user) => {
+      this.profileForm.patchValue({
+        name: user.name,
+        description: user.description || ''
+      });
+      if(user.profile_photo){
+        this.previewImage = environment.storageUrl + '/' + user.profile_photo;
       }
-    });
-  }
+      this.authService.setCurrentUser(user);
+      localStorage.setItem('currentUser', JSON.stringify(user));
+    },
+    error: (err) => {
+      this.message = 'Error cargando perfil.';
+      console.error(err);
+    }
+  });
+}
 
   onFileChange(event: Event) {
     const input = event.target as HTMLInputElement;

@@ -3,12 +3,13 @@ import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { User } from './profile.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private API_URL = 'http://127.0.0.1:8000/api';
+  private readonly API_URL = environment.apiUrl;
   private currentUserSubject = new BehaviorSubject<any>(null);
   public currentUser$ = this.currentUserSubject.asObservable();
   private router = inject(Router);
@@ -36,7 +37,7 @@ export class AuthService {
     localStorage.removeItem('user_role');
     this.currentUserSubject.next(null);
     this.router.navigate(['/estrategias']);
-  } 
+  }
 
   getToken(): string | null {
     return localStorage.getItem('access_token');

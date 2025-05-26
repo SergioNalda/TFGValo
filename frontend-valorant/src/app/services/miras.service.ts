@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 })
 export class MiraService {
 
-   private API_URL = environment.apiUrl;
+  private readonly API_URL = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
@@ -16,7 +16,7 @@ export class MiraService {
     return this.http.get<any[]>(`${this.API_URL}/miras`);
   }
 
-   getMirasPendientes(): Observable<any[]> {
+  getMirasPendientes(): Observable<any[]> {
     return this.http.get<any[]>(`${this.API_URL}/admin/miras/pendientes`);
   }
 
@@ -29,9 +29,9 @@ export class MiraService {
   }
 
   updateMira(id: number, data: FormData): Observable<any> {
-  data.append('_method', 'PUT'); // Añade este campo para simular PUT
-  return this.http.post(`${this.API_URL}/miras/${id}`, data); // Cambia PUT por POST
-}
+    data.append('_method', 'PUT'); // Para simular PUT con POST
+    return this.http.post(`${this.API_URL}/miras/${id}`, data);
+  }
 
   cambiarEstadoMira(id: number, estado: 'aprobado' | 'rechazado'): Observable<any> {
     return this.http.patch(`${this.API_URL}/admin/miras/${id}/estado`, { estado });

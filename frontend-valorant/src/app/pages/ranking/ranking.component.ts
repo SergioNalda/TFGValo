@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink, RouterOutlet } from '@angular/router'  ;
 import { HeaderComponent } from '../../shared/header/header.component';
 
+
 @Component({
   selector: 'app-ranking',
   standalone: true,

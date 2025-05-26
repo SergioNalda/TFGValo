@@ -6,6 +6,9 @@ import { CrearEstrategiaComponent } from './pages/estrategias/crear-estrategia.c
 import { RankingComponent } from './pages/ranking/ranking.component';
 import { AuthGuard } from './services/auth.guard';
 import { CommonModule } from '@angular/common';
+import { environment } from '../environments/environment';
+
+const url = environment.apiUrl;
 
 @Component({
   selector: 'app-root',

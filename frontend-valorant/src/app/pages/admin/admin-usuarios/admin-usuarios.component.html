@@ -1,72 +1,72 @@
-<h2>Usuarios Normales</h2>
+  <h2>Usuarios Normales</h2>
 
-<input
-  type="text"
-  placeholder="Buscar usuarios por nombre o email..."
-  [(ngModel)]="searchTerm"
-  class="search-input"
-/>
+  <input
+    type="text"
+    placeholder="Buscar usuarios por nombre o email..."
+    [(ngModel)]="searchTerm"
+    class="search-input"
+  />
 
-<table class="styled-table">
-  <thead>
-    <tr>
-      <th (click)="sortBy('name')">
-        Nombre
-        <span *ngIf="sortColumn === 'name'">
-          {{ sortDirection === 'asc' ? '▲' : '▼' }}
-        </span>
-      </th>
-      <th (click)="sortBy('email')">Email</th>
-      <th (click)="sortBy('role_id')">Rol actual</th>
-      <th>Cambiar rol</th>
-      <th (click)="sortBy('created_at')">Fecha registro</th>
-      <th (click)="sortBy('estrategias_count')">Estrategias creadas</th>
-      <th (click)="sortBy('favoritos_count')">Favoritos guardados</th>
-      <th (click)="sortBy('estado')">Estado</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th (click)="sortBy('name')">
+          Nombre
+          <span *ngIf="sortColumn === 'name'">
+            {{ sortDirection === 'asc' ? '▲' : '▼' }}
+          </span>
+        </th>
+        <th (click)="sortBy('email')">Email</th>
+        <th (click)="sortBy('role_id')">Rol actual</th>
+        <th>Cambiar rol</th>
+        <th (click)="sortBy('created_at')">Fecha registro</th>
+        <th (click)="sortBy('estrategias_count')">Estrategias creadas</th>
+        <th (click)="sortBy('favoritos_count')">Favoritos guardados</th>
+        <th (click)="sortBy('estado')">Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
 
-  <tbody>
-    <tr *ngFor="let user of filteredUsuarios">
-      <td>{{ user.name }}</td>
-      <td>{{ user.email }}</td>
-      <td>{{ user.role_id === 1 ? 'Admin' : 'Usuario' }}</td>
-      <td>
-        <select [(ngModel)]="user.new_role_id" class="role-select">
-          <option [value]="2">Usuario</option>
-          <option [value]="1">Admin</option>
-        </select>
-      </td>
-      <td>{{ user.created_at | date:'mediumDate' }}</td>
-      <td>{{ user.estrategias_count ?? 0 }}</td>
-      <td>{{ user.favoritos_count ?? 0 }}</td>
-      <td>
-        {{ user.estado === 1 ? 'Activo' : 'Inactivo' }}
-      </td>
-      <td>
-        <button (click)="cambiarEstado(user)">
-          {{ user.estado === 1 ? 'Desactivar' : 'Activar' }}
-        </button>
-        <button (click)="actualizarRol(user)" class="btn btn-save">Guardar</button>
-        <button (click)="eliminarUsuario(user.id)" class="btn btn-delete">Eliminar</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+    <tbody>
+      <tr *ngFor="let user of filteredUsuarios">
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.role_id === 1 ? 'Admin' : 'Usuario' }}</td>
+        <td>
+          <select [(ngModel)]="user.new_role_id" class="role-select">
+            <option [value]="2">Usuario</option>
+            <option [value]="1">Admin</option>
+          </select>
+        </td>
+        <td>{{ user.created_at | date:'mediumDate' }}</td>
+        <td>{{ user.estrategias_count ?? 0 }}</td>
+        <td>{{ user.favoritos_count ?? 0 }}</td>
+        <td>
+          {{ user.estado === 1 ? 'Activo' : 'Inactivo' }}
+        </td>
+        <td>
+          <button (click)="cambiarEstado(user)">
+            {{ user.estado === 1 ? 'Desactivar' : 'Activar' }}
+          </button>
+          <button (click)="actualizarRol(user)" class="btn btn-save">Guardar</button>
+          <button (click)="eliminarUsuario(user.id)" class="btn btn-delete">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-<!-- Modal confirmación -->
-<div class="modal" *ngIf="modalVisible">
-  <div class="modal-content">
-    <p>{{ modalMessage }}</p>
-    <div class="modal-buttons">
-      <button (click)="confirmModal()" class="btn btn-save">Confirmar</button>
-      <button (click)="closeModal()" class="btn btn-cancel">Cancelar</button>
+  <!-- Modal confirmación -->
+  <div class="modal" *ngIf="modalVisible">
+    <div class="modal-content">
+      <p>{{ modalMessage }}</p>
+      <div class="modal-buttons">
+        <button (click)="confirmModal()" class="btn btn-save">Confirmar</button>
+        <button (click)="closeModal()" class="btn btn-cancel">Cancelar</button>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Notificación -->
-<div class="notification" *ngIf="notification" [ngClass]="notificationType">
-  {{ notification }}
-</div>
+  <!-- Notificación -->
+  <div class="notification" *ngIf="notification" [ngClass]="notificationType">
+    {{ notification }}
+  </div>

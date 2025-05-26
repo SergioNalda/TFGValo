@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['https://<frontend-valorant>.netlify.app'],
+   'allowed_origins' => ['http://20.199.90.46'],
 
     'allowed_origins_patterns' => [],
 
@@ -30,6 +30,5 @@ return [
     'max_age' => 0,
 
     'supports_credentials' => true,
-
 
 ];

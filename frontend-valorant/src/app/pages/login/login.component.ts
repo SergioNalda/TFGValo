@@ -3,6 +3,8 @@ import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
+import { environment } from '../../../environments/environment';
+
 
 @Component({
   selector: 'app-login',
@@ -15,6 +17,7 @@ export class LoginComponent {
   loginData = { email: '', password: '' };
   errorMessage: string | null = null;
   private errorTimeout: any;
+  public environment = environment;
 
   constructor(
     private authService: AuthService,

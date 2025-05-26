@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { CommonModule } from '@angular/common';
 import { MiraService } from '../../../services/miras.service';
 import { Mira } from '../../../models/mira';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-admin-miras',
@@ -19,6 +20,7 @@ export class AdminMirasComponent implements OnInit {
   alertMessage: string | null = null;
   alertType: 'success' | 'error' | null = null;
   editingMiraId: number | null = null;
+  public environment = environment;
 
   constructor(private miraService: MiraService, private fb: FormBuilder) {
     this.miraForm = this.fb.group({
